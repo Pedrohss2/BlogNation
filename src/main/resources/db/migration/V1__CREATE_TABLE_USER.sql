@@ -1,7 +1,7 @@
-CREATE TABLE User (
-    id  FLOAT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+CREATE TABLE Users (
+    id INT NOT NULL PRIMARY KEY,
     name varchar(50),
-    email(150),
+    email varchar(150),
     senha varchar(50),
     role ENUM('ADMIN', 'USER')
 );

@@ -1,9 +1,9 @@
-CREATE TABLE Comment(
-    id FLOAT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+CREATE TABLE Comments (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     name varchar(50),
     content varchar(155),
-    blog_id FLOAT,
-    user_id FLOAT,
-    FOREIGN KEY (blog_id) REFERENCES Blog(id),
-    FOREIGN KEY (user_id) REFERENCES User(id)
+    blog_id INT,
+    user_id INT,
+    FOREIGN KEY (blog_id) REFERENCES Blogs(id),
+    FOREIGN KEY (user_id) REFERENCES Users(id)
 )
