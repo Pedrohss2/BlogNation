@@ -1,11 +1,9 @@
 package com.BlogNation.br.dto;
 
-import com.BlogNation.br.model.User;
 import com.BlogNation.br.model.enums.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
