@@ -1,12 +1,13 @@
 package com.BlogNation.br.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "comment")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,9 +18,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "author_name", nullable = false)
-    private String authorName;
-
+    @NotBlank(message = "Field 'content' cannot be blank")
     @Column(name = "content", nullable = false)
     private String content;
 

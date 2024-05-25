@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "blogs")
@@ -38,4 +39,7 @@ public class Blog {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author_id;
+
+    @OneToMany(mappedBy = "blog")
+    private List<Comment> comments;
 }

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class UserMinDTO {
-
     private Long id;
 
     public UserMinDTO(User user) {
