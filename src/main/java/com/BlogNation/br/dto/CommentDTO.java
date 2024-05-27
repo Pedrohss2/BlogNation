@@ -1,9 +1,6 @@
 package com.BlogNation.br.dto;
 
-import com.BlogNation.br.model.Blog;
 import com.BlogNation.br.model.Comment;
-import com.BlogNation.br.model.User;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,13 +13,15 @@ public class CommentDTO {
 
     private Long id;
 
-    @NotBlank(message = "Field 'name' cannot be blank")
+    @NotBlank(message = "Field 'content' cannot be blank")
     private String content;
 
     private Date publishDate;
 
+    @NotBlank(message = "Field 'author_id' cannot be blank")
     private UserMinDTO author_id;
 
+    @NotBlank(message = "Field 'blog_id' cannot be blank")
     private BlogDTO blog_id;
 
     private Date updated_At;

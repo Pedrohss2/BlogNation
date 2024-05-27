@@ -2,6 +2,7 @@ package com.BlogNation.br.controller;
 
 import com.BlogNation.br.dto.UserDTO;
 import com.BlogNation.br.service.UserService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +33,8 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
-    @PostMapping("/up")
+    @Transactional
+    @PostMapping
     public ResponseEntity<UserDTO> create(@Valid @RequestBody UserDTO userDTO) {
 
         userDTO = userService.create(userDTO);
@@ -45,8 +47,7 @@ public class UserController {
         return ResponseEntity.created(uri).build();
     }
 
-
-    @PutMapping
+    @PutMapping("/up")
     public ResponseEntity<UserDTO> update(@Valid Long id, @RequestBody UserDTO userDTO) {
         userDTO = userService.update(id, userDTO);
 

@@ -20,6 +20,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+
     @GetMapping
     public ResponseEntity<Page<CommentMinDTO>> findAllById(@RequestParam(name = "id", defaultValue = " ") Long id, Pageable pageable) {
         Page<CommentMinDTO> comments = commentService.findAllById(id, pageable);
@@ -28,9 +29,9 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<CommentDTO> addComent(@Valid @RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<CommentDTO> create(@Valid @RequestBody CommentDTO commentDTO) {
 
-        commentDTO = commentService.addComment(commentDTO);
+        commentDTO = commentService.create(commentDTO);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -39,4 +40,18 @@ public class CommentController {
 
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CommentDTO> update(Long id,@Valid @RequestBody CommentDTO commentDTO) {
+        commentDTO = commentService.update(id, commentDTO);
+
+        return ResponseEntity.ok(commentDTO);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<CommentDTO> delete(Long id) {
+        commentService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
