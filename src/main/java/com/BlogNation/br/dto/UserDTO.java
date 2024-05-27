@@ -1,5 +1,6 @@
 package com.BlogNation.br.dto;
 
+import com.BlogNation.br.model.User;
 import com.BlogNation.br.model.enums.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,4 +20,12 @@ public class UserDTO {
     @Size(min = 4, message = "Password must be longer than 4 characters ")
     private String password;
     private  UserRole role;
+
+    public UserDTO(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.role = user.getRole();
+    }
 }

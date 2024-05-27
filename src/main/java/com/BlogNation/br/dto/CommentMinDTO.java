@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 public class CommentMinDTO {
 
     private Long id;
-    private String comment;
     private String author;
+    private String comment;
 
     public CommentMinDTO(Comment comment) {
         this.id = comment.getId();
-        this.comment = comment.getContent();
         this.author = comment.getAuthor().getName();
+        this.comment = comment.getContent();
     }
 
 }
