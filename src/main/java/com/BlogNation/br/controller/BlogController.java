@@ -1,9 +1,7 @@
 package com.BlogNation.br.controller;
 
 import com.BlogNation.br.dto.BlogDTO;
-import com.BlogNation.br.dto.UserDTO;
 import com.BlogNation.br.service.BlogService;
-import com.BlogNation.br.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

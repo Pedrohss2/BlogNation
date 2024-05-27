@@ -1,17 +1,13 @@
 package com.BlogNation.br.service;
 
 import com.BlogNation.br.dto.BlogDTO;
-import com.BlogNation.br.dto.UserDTO;
 import com.BlogNation.br.model.Blog;
-import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.BlogRepository;
-import com.BlogNation.br.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Service
