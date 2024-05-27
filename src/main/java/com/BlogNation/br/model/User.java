@@ -2,13 +2,13 @@ package com.BlogNation.br.model;
 
 import com.BlogNation.br.model.enums.UserRole;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 
 @AllArgsConstructor
@@ -41,5 +41,8 @@ public class User {
 
     @OneToMany(mappedBy = "author_id")
     private List<Blog> blogs;
+
+    @ManyToMany(mappedBy = "followers")
+    private Set<Blog> blog;
 
 }

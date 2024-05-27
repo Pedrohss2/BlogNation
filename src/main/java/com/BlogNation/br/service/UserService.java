@@ -1,7 +1,10 @@
 package com.BlogNation.br.service;
 
 import com.BlogNation.br.dto.UserDTO;
+import com.BlogNation.br.model.Blog;
 import com.BlogNation.br.model.User;
+import com.BlogNation.br.repository.BlogRepository;
+import com.BlogNation.br.repository.UserFollowRepository;
 import com.BlogNation.br.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -16,6 +19,12 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BlogRepository blogRepository;
+
+    @Autowired
+    private UserFollowRepository userFollowRepository;
 
     @Autowired
     private ModelMapper modelMappers;
@@ -61,4 +70,14 @@ public class UserService {
         }
     }
 
+    public void userFollow(Long id, Long blogId) {
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
+
+        user.getBlogs().add(blog);
+        blog.getFollowers().add(user);
+
+        userRepository.save(user);
+        blogRepository.save(blog);
+    }
 }

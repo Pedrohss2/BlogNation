@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "blogs")
@@ -42,4 +43,11 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments;
+    @ManyToMany
+    @JoinTable(name = "user_follow_blog",
+            joinColumns =  @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "blog_id"))
+    private Set<User> followers;
+
+
 }

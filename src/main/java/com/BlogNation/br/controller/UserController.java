@@ -60,4 +60,10 @@ public class UserController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/user/{user_id}/follow/{blog_id}")
+    public ResponseEntity<Void> follow(@PathVariable Long user_id, @PathVariable Long blog_id) {
+        userService.userFollow(user_id, blog_id);
+        return ResponseEntity.noContent().build();
+    }
 }
