@@ -5,10 +5,7 @@ import com.BlogNation.br.service.BlogService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -19,6 +16,13 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
+
+    @GetMapping
+    public ResponseEntity<BlogDTO> findById(@RequestParam(name = "id", defaultValue = "") Long id) {
+        BlogDTO blogDTO = blogService.findById(id);
+
+        return ResponseEntity.ok(blogDTO);
+    }
 
     @PostMapping
     public ResponseEntity<BlogDTO> create(@Valid @RequestBody BlogDTO blogDTO) {
@@ -31,6 +35,19 @@ public class BlogController {
                 .toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BlogDTO> update(Long id, @Valid @RequestBody BlogDTO blogDTO) {
+        blogDTO = blogService.update(id, blogDTO);
+
+        return ResponseEntity.ok(blogDTO);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<BlogDTO> delete(Long id) {
+        blogService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

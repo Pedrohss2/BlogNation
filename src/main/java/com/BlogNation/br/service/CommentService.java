@@ -25,7 +25,6 @@ public class CommentService {
     @Autowired
     private ModelMapper modelMappers;
 
-
     public Page<CommentMinDTO> findAllById(Long id, Pageable pageable) {
         Page<Comment> comments = commentRepository.findAllById(id, pageable);
 
