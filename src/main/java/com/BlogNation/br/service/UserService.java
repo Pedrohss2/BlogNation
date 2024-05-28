@@ -70,7 +70,8 @@ public class UserService {
         }
     }
 
-    public void userFollow(Long id, Long blogId) {
+    public void follow(Long id, Long blogId) {
+
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
         Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
 
@@ -80,4 +81,17 @@ public class UserService {
         userRepository.save(user);
         blogRepository.save(blog);
     }
+
+    public void unfollow(Long id, Long blogId)  {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
+
+        user.getBlogs().remove(blog);
+        blog.getFollowers().remove(user);
+
+        userRepository.save(user);
+        blogRepository.save(blog);
+    }
+
 }
