@@ -19,10 +19,6 @@ public class CommentDTO {
 
     private Date publishDate;
 
-    @NotBlank(message = "Field 'author_id' cannot be blank")
-    private UserMinDTO author_id;
-
-    @NotBlank(message = "Field 'blog_id' cannot be blank")
     private BlogDTO blog_id;
 
     private Date updated_At;
@@ -31,7 +27,6 @@ public class CommentDTO {
         this.id = comment.getId();
         this.content = comment.getContent();
         this.publishDate = comment.getPublishDate();
-        this.author_id = new UserMinDTO(comment.getAuthor());
         this.blog_id = new BlogDTO(comment.getBlog());
         this.updated_At = comment.getUpdated_At();
     }
