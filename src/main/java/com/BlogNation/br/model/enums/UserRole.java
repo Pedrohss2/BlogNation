@@ -1,5 +1,8 @@
 package com.BlogNation.br.model.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum UserRole {
 
     ADMIN("admin"),

@@ -1,4 +1,4 @@
-package com.BlogNation.br.dto;
+package com.BlogNation.br.dto.user;
 
 import com.BlogNation.br.model.User;
 import lombok.Getter;

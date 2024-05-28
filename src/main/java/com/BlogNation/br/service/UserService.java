@@ -1,6 +1,6 @@
 package com.BlogNation.br.service;
 
-import com.BlogNation.br.dto.UserDTO;
+import com.BlogNation.br.dto.user.UserDTO;
 import com.BlogNation.br.model.Blog;
 import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.BlogRepository;

@@ -1,5 +1,6 @@
 package com.BlogNation.br.dto;
 
+import com.BlogNation.br.dto.user.UserMinDTO;
 import com.BlogNation.br.model.Comment;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

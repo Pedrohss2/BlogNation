@@ -1,9 +1,7 @@
-package com.BlogNation.br.dto;
+package com.BlogNation.br.dto.user;
 
 import com.BlogNation.br.model.User;
-import com.BlogNation.br.model.enums.UserRole;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,19 +11,16 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
 
     private Long id;
-    @NotBlank(message = "Field 'name' cannot be blank")
+    @NotEmpty(message = "Field 'name' cannot be blank")
     private String name;
-    @Email(message = "Field 'email' need be a true email")
     private String email;
     @Size(min = 4, message = "Password must be longer than 4 characters ")
     private String password;
-    private  UserRole role;
 
     public UserDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.role = user.getRole();
     }
 }
