@@ -3,6 +3,8 @@ package com.BlogNation.br.service;
 import com.BlogNation.br.dto.BlogDTO;
 import com.BlogNation.br.model.Blog;
 import com.BlogNation.br.repository.BlogRepository;
+import com.BlogNation.br.service.exception.DatabaseException;
+import com.BlogNation.br.service.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,9 @@ public class BlogService {
     private ModelMapper modelMappers;
 
     public BlogDTO findById(Long id) {
-        Blog blog = blogRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
+        Blog blog = blogRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Blog not found"));
 
-        return modelMappers.map(blog, BlogDTO.class);
+        return new BlogDTO(blog);
     }
 
     public BlogDTO create(BlogDTO blogDTO) {
@@ -45,13 +47,18 @@ public class BlogService {
 
             return modelMappers.map(blog, BlogDTO.class);
         }
-        catch (EntityNotFoundException e) {
-            throw new DataIntegrityViolationException("User not found");
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("User not found");
         }
     }
 
     public void delete(Long id) {
-        blogRepository.deleteById(id);
+        try {
+            blogRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("User not found");
+        }
     }
 
 }

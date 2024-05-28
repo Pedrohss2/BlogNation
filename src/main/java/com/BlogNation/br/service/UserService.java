@@ -6,6 +6,8 @@ import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.BlogRepository;
 import com.BlogNation.br.repository.UserFollowRepository;
 import com.BlogNation.br.repository.UserRepository;
+import com.BlogNation.br.service.exception.DatabaseException;
+import com.BlogNation.br.service.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,7 @@ public class UserService {
     }
 
     public UserDTO findById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         return new UserDTO(user);
     }
@@ -57,7 +59,7 @@ public class UserService {
             return modelMappers.map(user, UserDTO.class);
         }
         catch (EntityNotFoundException e) {
-            throw new EntityNotFoundException("User not found!");
+            throw new ResourceNotFoundException("User not found!");
         }
     }
 
@@ -65,15 +67,15 @@ public class UserService {
         try {
             userRepository.deleteById(id);
         }
-        catch (EntityNotFoundException e) {
-            throw new DataIntegrityViolationException("Integrity violation");
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Integrity violation");
         }
     }
 
     public void follow(Long id, Long blogId) {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
-        Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new ResourceNotFoundException("Blog not found"));
 
         user.getBlogs().add(blog);
         blog.getFollowers().add(user);
@@ -84,8 +86,8 @@ public class UserService {
 
     public void unfollow(Long id, Long blogId)  {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
-        Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new EntityNotFoundException("Blog not found"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        Blog blog = blogRepository.findById(blogId).orElseThrow(() -> new ResourceNotFoundException("Blog not found"));
 
         user.getBlogs().remove(blog);
         blog.getFollowers().remove(user);

@@ -4,6 +4,8 @@ import com.BlogNation.br.dto.CommentDTO;
 import com.BlogNation.br.dto.CommentMinDTO;
 import com.BlogNation.br.model.Comment;
 import com.BlogNation.br.repository.CommentRepository;
+import com.BlogNation.br.service.exception.DatabaseException;
+import com.BlogNation.br.service.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +52,17 @@ public class CommentService {
 
             return modelMappers.map(comment, CommentDTO.class);
         }
-        catch (EntityNotFoundException e) {
-            throw new DataIntegrityViolationException("User not found");
+        catch (DataIntegrityViolationException e) {
+            throw new ResourceNotFoundException("User not found");
         }
     }
 
     public void delete(Long id) {
-        commentRepository.deleteById(id);
+        try {
+            commentRepository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("User not found");
+        }
     }
 }
