@@ -50,5 +50,4 @@ public class BlogController {
         blogService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 }

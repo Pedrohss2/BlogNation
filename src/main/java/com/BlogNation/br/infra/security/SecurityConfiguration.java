@@ -27,20 +27,14 @@ public class SecurityConfiguration {
     private SecurityFilter securityFilter;
 
     @Bean
-    @Order(1)
-    public SecurityFilterChain h2SecurityFilterChain(HttpSecurity http) throws Exception {
-        http.securityMatcher(PathRequest.toH2Console()).csrf(AbstractHttpConfigurer::disable)
-                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
-        return http.build();
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/blogs/**").authenticated()
+                        .requestMatchers("/auth/all").authenticated()
+                        .requestMatchers("/auth/up").authenticated()
+                        .requestMatchers("/auth/user/").authenticated()
                         .requestMatchers("/comment/**").authenticated()
                         .anyRequest().permitAll())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
