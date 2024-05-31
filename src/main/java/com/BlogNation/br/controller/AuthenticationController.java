@@ -8,11 +8,9 @@ import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.UserRepository;
 import com.BlogNation.br.service.AuthorizationService;
 import com.BlogNation.br.service.TokenService;
-import com.BlogNation.br.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,12 +33,9 @@ public class AuthenticationController {
     @Autowired
     private AuthorizationService authorizationService;
 
-    @Autowired
-    private UserService userService;
-
-    @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
-        UserDTO userDTO = userService.findById(id);
+    @GetMapping("/users/me")
+    public ResponseEntity<UserDTO> getMe() {
+        UserDTO userDTO = authorizationService.getMe();
         return ResponseEntity.ok(userDTO);
     }
 
@@ -65,39 +60,6 @@ public class AuthenticationController {
         this.repository.save(user);
 
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<Page<UserDTO>> getAllUsers(Pageable pageable) {
-        Page<UserDTO> users = userService.getAllUsers(pageable);
-
-        return ResponseEntity.ok(users);
-    }
-
-    @PutMapping("/up")
-    public ResponseEntity<UserDTO> update(@Valid Long id, @RequestBody UserDTO userDTO) {
-        userDTO = userService.update(id, userDTO);
-
-        return ResponseEntity.ok(userDTO);
-    }
-
-    @DeleteMapping
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        userService.delete(id);
-
-        return ResponseEntity.noContent().build();
-    }
-
-    @PostMapping("/user/{user_id}/follow/{blog_id}")
-    public ResponseEntity<Void> follow(@PathVariable Long user_id, @PathVariable Long blog_id) {
-        userService.follow(user_id, blog_id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping("/user/{user_id}/unfollow/{blog_id}")
-    public ResponseEntity<Void> unFollow(@PathVariable Long user_id, @PathVariable Long blog_id) {
-        userService.unfollow(user_id, blog_id);
-        return ResponseEntity.noContent().build();
     }
 
 }

@@ -5,7 +5,6 @@ import com.BlogNation.br.service.BlogService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,7 +18,7 @@ public class BlogController {
     private BlogService blogService;
 
     @GetMapping
-    public ResponseEntity<BlogDTO> findById(@RequestParam(name = "id", defaultValue = "") Long id) {
+    public ResponseEntity<BlogDTO> findById(@RequestParam(name = "id", defaultValue = "0") Long id) {
         BlogDTO blogDTO = blogService.findById(id);
 
         return ResponseEntity.ok(blogDTO);
@@ -39,13 +38,13 @@ public class BlogController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BlogDTO> update(Long id, @Valid @RequestBody BlogDTO blogDTO) {
+    public ResponseEntity<BlogDTO> update(@PathVariable Long id, @Valid @RequestBody BlogDTO blogDTO) {
         blogDTO = blogService.update(id, blogDTO);
 
         return ResponseEntity.ok(blogDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<BlogDTO> delete(Long id) {
         blogService.delete(id);
         return ResponseEntity.noContent().build();

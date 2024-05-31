@@ -1,8 +1,10 @@
 package com.BlogNation.br.service;
 
+import com.BlogNation.br.dto.user.UserDTO;
 import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.UserRepository;
 import com.BlogNation.br.service.exception.ResourceNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,5 +31,10 @@ public class AuthorizationService implements UserDetailsService {
         catch (Exception e) {
             throw new UsernameNotFoundException("Invalid user!!");
         }
+    }
+
+    public UserDTO getMe() {
+        User user = authenticated();
+        return new UserDTO(user);
     }
 }

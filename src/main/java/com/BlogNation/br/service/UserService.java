@@ -37,32 +37,6 @@ public class UserService {
 
         return users.map(UserDTO::new);
     }
-
-    public UserDTO findById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-
-        return new UserDTO(user);
-    }
-
-    public UserDTO create(UserDTO userDTO) {
-        User user = modelMappers.map(userDTO, User.class);
-
-        user = userRepository.save(user);
-
-        return modelMappers.map(user, UserDTO.class);
-    }
-
-    public UserDTO update(Long id, UserDTO userDTO) {
-        try {
-            User user = modelMappers.map(userDTO, User.class);
-            user = userRepository.save(user);
-            return modelMappers.map(user, UserDTO.class);
-        }
-        catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException("User not found!");
-        }
-    }
-
     public void delete(Long id) {
         try {
             userRepository.deleteById(id);
