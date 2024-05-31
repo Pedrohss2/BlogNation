@@ -2,6 +2,7 @@ package com.BlogNation.br.controller;
 
 import com.BlogNation.br.dto.user.UserDTO;
 import com.BlogNation.br.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/all")
+    @Operation(summary = "Get all users")
     public ResponseEntity<Page<UserDTO>> getAllUsers(Pageable pageable) {
         Page<UserDTO> users = userService.getAllUsers(pageable);
 
@@ -24,6 +26,7 @@ public class UserController {
     }
 
     @DeleteMapping("/del/{id}")
+    @Operation(summary = "Delete a user by id")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
 
@@ -31,12 +34,14 @@ public class UserController {
     }
 
     @PostMapping("/user/{user_id}/follow/{blog_id}")
+    @Operation(summary = "User follow a blog")
     public ResponseEntity<Void> follow(@PathVariable Long user_id, @PathVariable Long blog_id) {
         userService.follow(user_id, blog_id);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/user/{user_id}/unfollow/{blog_id}")
+    @Operation(summary = "User unfollow a blog")
     public ResponseEntity<Void> unFollow(@PathVariable Long user_id, @PathVariable Long blog_id) {
         userService.unfollow(user_id, blog_id);
         return ResponseEntity.noContent().build();

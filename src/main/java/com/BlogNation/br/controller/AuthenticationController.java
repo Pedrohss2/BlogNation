@@ -8,6 +8,7 @@ import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.UserRepository;
 import com.BlogNation.br.service.AuthorizationService;
 import com.BlogNation.br.service.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,12 +35,14 @@ public class AuthenticationController {
     private AuthorizationService authorizationService;
 
     @GetMapping("/users/me")
+    @Operation(summary = "get logged in user")
     public ResponseEntity<UserDTO> getMe() {
         UserDTO userDTO = authorizationService.getMe();
         return ResponseEntity.ok(userDTO);
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Login a user")
     public ResponseEntity<LoginDTO> login(@RequestBody AuthenticationDTO dto) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword());
         var auth = this.authenticationManager.authenticate(usernamePassword);
@@ -49,6 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "Register a user")
     public ResponseEntity<RegisterDTO> register(@Valid @RequestBody RegisterDTO dto) {
 
         if(repository.findByEmail(dto.getEmail()) != null){

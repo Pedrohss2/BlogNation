@@ -3,6 +3,7 @@ package com.BlogNation.br.controller;
 import com.BlogNation.br.dto.CommentDTO;
 import com.BlogNation.br.dto.CommentMinDTO;
 import com.BlogNation.br.service.CommentService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class CommentController {
 
 
     @GetMapping
+    @Operation(summary = "Get all comment that one blog by id")
     public ResponseEntity<Page<CommentMinDTO>> findAllById(@RequestParam(name = "id", defaultValue = " ") Long id, Pageable pageable) {
         Page<CommentMinDTO> comments = commentService.findAllById(id, pageable);
 
@@ -29,6 +31,7 @@ public class CommentController {
     }
 
     @PostMapping
+    @Operation(summary = "Create a comment")
     public ResponseEntity<CommentDTO> create(@Valid @RequestBody CommentDTO commentDTO) {
 
         commentDTO = commentService.create(commentDTO);
@@ -42,6 +45,7 @@ public class CommentController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update a comment")
     public ResponseEntity<CommentDTO> update(@PathVariable Long id, @Valid @RequestBody CommentDTO commentDTO) {
         commentDTO = commentService.update(id, commentDTO);
 
@@ -49,6 +53,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a comment")
     public ResponseEntity<CommentDTO> delete(@PathVariable Long id) {
         commentService.delete(id);
         return ResponseEntity.noContent().build();
