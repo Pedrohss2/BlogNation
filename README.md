@@ -81,7 +81,7 @@ Body(raw)
 ```
 {
     "title": "My weekend",
-    "description": "Pos about my weekend my friend",
+    "description": "Blog about my weekend my friend",
     "author_id": {
         "id": 1 
     },
@@ -111,7 +111,7 @@ localhost:8080/comment
 Body(raw)
 ```
 {
-    "content": "Gostei muito do blogm esperando o proxim",
+    "content": "Gostei muito do blog",
     "author_id": {
         "id": 1
     },
