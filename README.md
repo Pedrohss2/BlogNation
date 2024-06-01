@@ -45,12 +45,13 @@ Body (pretty)
 }
 ```
 
-Authentication bearer
-An authentication token is required to return the user
+##Authentication bearer
+#An authentication token is required to return the user
 
 | Parameter   | Type       | Description                         |
 | :---------- | :--------- | :---------------------------------- |
 | `barear` | `string` | **Mandatory**. {{token}} |
+
 End point to see logged in user
 
 Method: POST
