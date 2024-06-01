@@ -33,14 +33,14 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/user/{user_id}/follow/{blog_id}")
+    @PostMapping("/{user_id}/follow/{blog_id}")
     @Operation(summary = "User follow a blog")
     public ResponseEntity<Void> follow(@PathVariable Long user_id, @PathVariable Long blog_id) {
         userService.follow(user_id, blog_id);
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/user/{user_id}/unfollow/{blog_id}")
+    @DeleteMapping("/{user_id}/unfollow/{blog_id}")
     @Operation(summary = "User unfollow a blog")
     public ResponseEntity<Void> unFollow(@PathVariable Long user_id, @PathVariable Long blog_id) {
         userService.unfollow(user_id, blog_id);

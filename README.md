@@ -51,9 +51,9 @@ Authentication bearer
 
 An authentication token is required to return the user
 
-| Parameter   | Type       | Description                         |
-| :---------- | :--------- | :---------------------------------- |
-| `barear` | `string` | {{token}} |
+| Parameter   | Type       | Description  |
+| :---------- | :--------- |:-------------|
+| `{{token}}` | `string` | Barear token |
 
 End point to see logged in user
 
@@ -92,14 +92,14 @@ End-point to follow a blog
 
 Method: POST
 ```
-localhost:8080/user/user/{user_id}/follow/{blog_id}
+localhost:8080/user/{user_id}/follow/{blog_id}
 ```
 
 End-point to unfollow a blog
 
 Method: DELETE
 ```
-localhost:8080/user/user/{user_id}/unfollow/{blog_id}
+localhost:8080/user/{user_id}/unfollow/{blog_id}
 ```
 End-point to comment a blog
 

@@ -4,7 +4,6 @@ import com.BlogNation.br.dto.user.UserDTO;
 import com.BlogNation.br.model.User;
 import com.BlogNation.br.repository.UserRepository;
 import com.BlogNation.br.service.exception.ResourceNotFoundException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

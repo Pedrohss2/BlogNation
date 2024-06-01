@@ -5,7 +5,6 @@ import com.BlogNation.br.model.Blog;
 import com.BlogNation.br.repository.BlogRepository;
 import com.BlogNation.br.service.exception.DatabaseException;
 import com.BlogNation.br.service.exception.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
