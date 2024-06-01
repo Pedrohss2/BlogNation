@@ -69,6 +69,62 @@ Body(raw)
 }
 ```
 
+End-point for posting a blog
+
+Method: POST
+```
+localhost:8080/blogs
+```
+Body(raw)
+```
+{
+    "title": "My weekend",
+    "description": "Pos about my weekend my friend",
+    "author_id": {
+        "id": 1 
+    },
+    "created_At": "2024-01-06"
+}
+```
+End-point to follow a blog
+
+Method: POST
+```
+localhost:8080/user/user/{user_id}/follow/{blog_id}
+```
+
+End-point to unfollow a blog
+
+Method: DELETE
+```
+localhost:8080/user/user/{user_id}/unfollow/{blog_id}
+```
+End-point to comment a blog
+
+Method: POST
+```
+localhost:8080/comment
+```
+
+Body(raw)
+```
+{
+    "content": "Gostei muito do blogm esperando o proxim",
+    "author_id": {
+        "id": 1
+    },
+    "blog_id": {
+        "id": 1
+    }
+}
+```
+
+## Author
+- [@octokatherine](https://github.com/Pedrohss2)
+
+
+
+
 
 
 
