@@ -1,4 +1,4 @@
-#BlogNatio
+## BlogNation
 An API that allows a user to log into the system, post a blog, follow and comment on the blog
 
 ## Functionalities
@@ -7,6 +7,8 @@ An API that allows a user to log into the system, post a blog, follow and commen
 - User comments on a blog
 - CRUD User
 - CRUD blog
+
+## Obs: ALL END-POINS MUST BE LOGGED IN
 
 ## Usage/Examples
 End-point to register a user 
@@ -120,7 +122,7 @@ Body(raw)
 ```
 
 ## Author
-- [@octokatherine](https://github.com/Pedrohss2)
+- [@pedroH](https://github.com/Pedrohss2)
 
 
 
