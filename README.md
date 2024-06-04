@@ -18,7 +18,7 @@ Method: POST
 localhost:8080/auth/register
 ```
 Body (raw)
-```
+```json
 {
     "name": "Pedro henrique",
     "email": "pedro@gmail.com",
@@ -33,7 +33,7 @@ Method: POST
 localhost:8080/auth/login
 ```
 Body (raw)
-```
+```json
 {
     "email": "pedro@gmail.com",
     "password": "peddro@hh"
@@ -41,7 +41,7 @@ Body (raw)
 ```
 The returned value will be a token: 
 Body (pretty)
-```
+```json
 {
     "token": "akshrediow54545exxxxwedexemplo"
 }
@@ -62,7 +62,7 @@ Method: POST
 localhost:8080/auth/users/me
 ```
 Body(raw)
-```
+```json
 {
     "id": 1,
     "name": "Pedro henrique",
@@ -78,7 +78,7 @@ Method: POST
 localhost:8080/blogs
 ```
 Body(raw)
-```
+```json
 {
     "title": "My weekend",
     "description": "Blog about my weekend my friend",
@@ -109,7 +109,7 @@ localhost:8080/comment
 ```
 
 Body(raw)
-```
+```json
 {
     "content": "Gostei muito do blog",
     "author_id": {
