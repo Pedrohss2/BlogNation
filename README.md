@@ -57,7 +57,7 @@ An authentication token is required to return the user
 
 End point to see logged in user
 
-Method: POST
+Method: GET
 ```
 localhost:8080/auth/users/me
 ```

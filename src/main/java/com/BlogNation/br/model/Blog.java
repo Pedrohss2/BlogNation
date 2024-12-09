@@ -29,14 +29,6 @@ public class Blog {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_At", nullable = false)
-    private Date created_At;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_At", nullable = false)
-    private Date updated_At;
-
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author_id;
@@ -49,5 +41,13 @@ public class Blog {
             inverseJoinColumns = @JoinColumn(name = "blog_id"))
     private Set<User> followers;
 
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_At", nullable = false)
+    private Date created_At;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_At", nullable = false)
+    private Date updated_At;
 
 }

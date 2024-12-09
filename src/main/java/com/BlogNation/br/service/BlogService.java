@@ -31,6 +31,8 @@ public class BlogService {
     public BlogDTO create(BlogDTO blogDTO) {
         Blog blog = modelMappers.map(blogDTO, Blog.class);
 
+        blog.setCreated_At(Date.from(Instant.now()));
+
         blog.setUpdated_At(Date.from(Instant.now()));
 
         blog = blogRepository.save(blog);

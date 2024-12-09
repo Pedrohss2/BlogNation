@@ -30,12 +30,12 @@ public class UserService {
     @Autowired
     private ModelMapper modelMappers;
 
-
     public Page<UserDTO> getAllUsers(Pageable pageable) {
         Page<User> users = userRepository.findAll(pageable);
 
         return users.map(UserDTO::new);
     }
+
     public void delete(Long id) {
         try {
             userRepository.deleteById(id);
