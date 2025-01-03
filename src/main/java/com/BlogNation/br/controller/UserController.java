@@ -3,7 +3,6 @@ package com.BlogNation.br.controller;
 import com.BlogNation.br.dto.user.UserDTO;
 import com.BlogNation.br.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,7 @@
 package com.BlogNation.br.controller;
 
 import com.BlogNation.br.dto.BlogDTO;
+import com.BlogNation.br.model.Blog;
 import com.BlogNation.br.service.BlogService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;

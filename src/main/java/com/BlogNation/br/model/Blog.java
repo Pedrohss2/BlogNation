@@ -1,6 +1,5 @@
 package com.BlogNation.br.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,12 +28,16 @@ public class Blog {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "photo_base_url")
+    private String photoBaseUrl;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author_id;
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments;
+
     @ManyToMany
     @JoinTable(name = "user_follow_blog",
             joinColumns =  @JoinColumn(name = "user_id"),

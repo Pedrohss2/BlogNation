@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 public class CommentMinDTO {
 
     private Long id;
+
     private String author;
+
     private String comment;
 
     public CommentMinDTO(Comment comment) {

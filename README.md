@@ -82,6 +82,7 @@ Body(raw)
 {
     "title": "My weekend",
     "description": "Blog about my weekend my friend",
+    "photoBaseUrl": "Desktop/Downloads",
     "author_id": {
         "id": 1 
     },
